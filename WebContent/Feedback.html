@@ -4,6 +4,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>
+<style>
+#result{
+width  : 300px;
+}
+
+</style>
 <script>
 //we are reusing this URL, somove it to a variable
 base_url="/rest/empp/";
@@ -11,6 +17,24 @@ base_url="/rest/empp/";
 
 
 $(document).ready(function(){
+	
+	 $.getJSON("rest/empp/",function(data1){
+		 var foo = data1.data[0];
+		 var str = "name";
+			$.each( data1.data, function( count, object ) { 
+		    	console.log(foo);
+	    		
+	    			$('#result').append("<br><option id="+ "'"+data1.data[0].id+"'"+"name="+str+">"+ data1.data[0].name+"</option>"  );
+	    			
+	    		
+	    	});
+ 				
+ 	
+ });
+	
+	
+	
+	
     
    $.fn.serializeObject = function()
     {
@@ -29,6 +53,10 @@ $(document).ready(function(){
        return o;
     };
     $('#cemp_form').submit(function(){
+    	console.log($('#result').val());
+    	$('#nam').val($('#result').val());
+    	
+    	console.log($('#nam').val($('#result').val()));
     
     	console.log($('#cemp_form').serializeObject());
     	postData($('#cemp_form').serializeObject());
@@ -63,8 +91,11 @@ $(document).ready(function(){
 
 
 <form id="cemp_form" method="POST">
-<p><b>Section I : Job Knowledge</b></p>
-<input type="text" min="0" max="10" name="name"></input>
+<p><b>Enter Name:</b></p>
+<select id=result></select>
+		
+ <input type="text" min="0" max="10" id = "nam" name="name">
+
 
 <p><b>Section I : Job Knowledge</b></p>
 1.Understands job requirements and responsibilities:<br>
