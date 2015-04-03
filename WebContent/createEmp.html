@@ -39,7 +39,7 @@ $(document).ready(function(){
     function postData(data){
         $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/unh/rest/empp",
+                url: "/rest/empp",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
                 crossDomain: true,
