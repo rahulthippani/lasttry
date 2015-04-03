@@ -22,9 +22,9 @@ $(document).ready(function(){
 		 var foo = data1.data[0];
 		 var str = "name";
 			$.each( data1.data, function( count, object ) { 
-		    	console.log(foo);
+		    	console.log(object);
 	    		
-	    			$('#result').append("<br><option id="+ "'"+data1.data[0].id+"'"+"name="+str+">"+ data1.data[0].name+"</option>"  );
+	    			$('#result').append("<br><option id="+ "'"+object.id+"'"+"name="+str+">"+ object.name+"</option>"  );
 	    			
 	    		
 	    	});
