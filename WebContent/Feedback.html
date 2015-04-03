@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1 style="text-align:center">FeedBack Form</h1>
+
+
+
+<form>
+<p><b>Section I : Job Knowledge</b></p>
+1.Understands job requirements and responsibilities:<br>
+<input type="text"  id="a1"></input>
+<br>
+2.Possesses required skills and knowledge for the job:<br>
+<input type="text" id="a2"></input>
+<br>
+3.Keeps abreast of current developments pertaining to the job<br>
+<input type="text" id="a3"></input>
+<br>
+
+
+<p><b>Section II: Planning and Problem Solving</b></p>
+1.Works in an organized manner:<br>
+<input type="text" id="b1"></input>
+<br>
+2.Reacts to problems in appropriate time:<br>
+<input type="text" id="b2"></input>
+<br>
+3.Can identify problems:<br>
+<input type="text" id="b3"></input>
+<br>
+
+
+
+<p><b>Section III: Team Work</b></p>
+1.Offers assistance to team members:<br>
+<input type="text" id="c1"></input>
+<br>
+2.Works well with different personality types:<br>
+<input type="text" id="c2"></input>
+<br>
+3.Participates in team discussions:<br>
+<input type="text" id="c3"></input>
+<br>
+<br>Enter your comments:<br>
+		<textarea rows="4" cols="30" maxlength="10" name="name"></textarea>
+
+<button onclick="myFunction()">Submit</button>
+ 
+
+</form>
+  <script>
+      function myFunction() {
+        var x1 = document.getElementById("a1").value;
+        var x2 = document.getElementById("a2").value;
+        var x3 = document.getElementById("a3").value;
+        var x4 = document.getElementById("b1").value;
+        var x5 = document.getElementById("b2").value;
+        var x6 = document.getElementById("b3").value;
+        var x7 = document.getElementById("c1").value;
+        var x8 = document.getElementById("c2").value;
+        var x9 = document.getElementById("c3").value;
+        var tot = parseInt(x1) + parseInt(x2) + parseInt(x3) + parseInt(x4) + parseInt(x5) + parseInt(x6)+parseInt(x7) + parseInt(x8) + parseInt(x9);
+        document.getElementById("demo").innerHTML = tot;
+      }
+    </script>
+
+
+<p id="demo"></p>
+
+</body>
+</html>

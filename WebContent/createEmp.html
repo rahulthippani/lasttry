@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="http://code.jquery.com/jquery-latest.min.js">
+</script>
+<script>
+//we are reusing this URL, somove it to a variable
+base_url="/rest/empp/";
+
+
+
+$(document).ready(function(){
+    
+   $.fn.serializeObject = function()
+    {
+       var o = {};
+       var a = this.serializeArray();
+       $.each(a, function() {
+           if (o[this.name]) {
+               if (!o[this.name].push) {
+                   o[this.name] = [o[this.name]];
+               }
+               o[this.name].push(this.value || '');
+           } else {
+               o[this.name] = this.value || '';
+           }
+       });
+       return o;
+    };
+    $('#cemp_form').submit(function(){
+    
+    	console.log($('#cemp_form').serializeObject());
+    	postData($('#cemp_form').serializeObject());
+    	
+   
+    	return false;
+    });
+    function postData(data){
+        $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/unh/rest/empp",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    alert("Success");
+                },
+                error: function (jqXHR, status) {
+                    console.log(jqXHR);
+                    alert('failed, please check console for errors');
+                }
+             });
+       }
+});
+
+</script>
+</head>
+<body>
+	<h1 style="text-align: center;">Employee Details</h1>
+	<form id="cemp_form" method="POST" >
+		<br>Enter your name:<br>
+		<input type="text" maxlength="10" name="name">
+		<br>Position:<br>
+		<input type="text" maxlength="10" name="position">
+		<input type="Submit">
+	</form>
+	<br>
+	
+	<div id="msg"></div>
+
+</body>
+</html>
