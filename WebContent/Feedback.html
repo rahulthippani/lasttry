@@ -1,55 +1,116 @@
 <!DOCTYPE html>
 <html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+</script>
+<script>
+//we are reusing this URL, somove it to a variable
+base_url="/rest/empp/";
+
+
+
+$(document).ready(function(){
+    
+   $.fn.serializeObject = function()
+    {
+       var o = {};
+       var a = this.serializeArray();
+       $.each(a, function() {
+           if (o[this.name]) {
+               if (!o[this.name].push) {
+                   o[this.name] = [o[this.name]];
+               }
+               o[this.name].push(this.value || '');
+           } else {
+               o[this.name] = this.value || '';
+           }
+       });
+       return o;
+    };
+    $('#cemp_form').submit(function(){
+    
+    	console.log($('#cemp_form').serializeObject());
+    	postData($('#cemp_form').serializeObject());
+    	
+   
+    	return false;
+    });
+    function postData(data){
+        $.ajax({
+                type: "POST",
+                url: "rest/empp/survey",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                    alert("Success");
+                },
+                error: function (jqXHR, status) {
+                    console.log(jqXHR);
+                    alert('failed, please check console for errors');
+                }
+             });
+       }
+});
+
+</script>
+</head>
 <body>
 <h1 style="text-align:center">FeedBack Form</h1>
 
 
 
-<form>
+<form id="cemp_form" method="POST">
+<p><b>Section I : Job Knowledge</b></p>
+<input type="text" min="0" max="10" name="name"></input>
+
 <p><b>Section I : Job Knowledge</b></p>
 1.Understands job requirements and responsibilities:<br>
-<input type="text"  id="a1"></input>
+<input type="text" min="0" max="10" name="a1"></input>
 <br>
 2.Possesses required skills and knowledge for the job:<br>
-<input type="text" id="a2"></input>
+<input type="text" min="0" max="10" name="a2"></input>
 <br>
 3.Keeps abreast of current developments pertaining to the job<br>
-<input type="text" id="a3"></input>
+<input type="text" min="0" max="10" name="a3"></input>
 <br>
 
 
 <p><b>Section II: Planning and Problem Solving</b></p>
 1.Works in an organized manner:<br>
-<input type="text" id="b1"></input>
+<input type="text" min="0" max="10" name="b1"></input>
 <br>
 2.Reacts to problems in appropriate time:<br>
-<input type="text" id="b2"></input>
+<input type="text" min="0" max="10" name="b2"></input>
 <br>
 3.Can identify problems:<br>
-<input type="text" id="b3"></input>
+<input type="text" min="0" max="10" name="b3"></input>
 <br>
 
 
 
 <p><b>Section III: Team Work</b></p>
 1.Offers assistance to team members:<br>
-<input type="text" id="c1"></input>
+<input type="text" min="0" max="10" name="c1"></input>
 <br>
 2.Works well with different personality types:<br>
-<input type="text" id="c2"></input>
+<input type="text" min="0" max="10" name="c2"></input>
 <br>
 3.Participates in team discussions:<br>
-<input type="text" id="c3"></input>
+<input type="text" min="0" max="10" name="c3"></input>
 <br>
 <br>Enter your comments:<br>
-		<textarea rows="4" cols="30" maxlength="10" name="name"></textarea>
+<textarea rows="4" cols="30" maxlength="200" name="comment"></textarea>
+<input type="Submit">
 
-<button onclick="myFunction()">Submit</button>
- 
+
+<!--<button onclick="myFunction()">Submit</button>  -->
 
 </form>
   <script>
-      function myFunction() {
+    /*  function myFunction() {
         var x1 = document.getElementById("a1").value;
         var x2 = document.getElementById("a2").value;
         var x3 = document.getElementById("a3").value;
@@ -62,10 +123,10 @@
         var tot = parseInt(x1) + parseInt(x2) + parseInt(x3) + parseInt(x4) + parseInt(x5) + parseInt(x6)+parseInt(x7) + parseInt(x8) + parseInt(x9);
         document.getElementById("demo").innerHTML = tot;
       }
+    
+    
+    */
     </script>
-
-
-<p id="demo"></p>
 
 </body>
 </html>
